@@ -1,3 +1,7 @@
 export default function PatientsPage() {
-  return <div className="min-h-screen text-gray-900">Patients Page</div>;
+  return (
+    <div className="mb-6">
+      <h2 className="text-2xl font-bold text-dark">Patients</h2>
+    </div>
+  );
 }

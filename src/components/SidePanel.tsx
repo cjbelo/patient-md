@@ -12,10 +12,10 @@ import {
   type IconProps,
 } from "@phosphor-icons/react";
 import type React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
-  { Icon: HouseIcon, label: "Dashboard", path: "/dashboard", active: true },
+  { Icon: HouseIcon, label: "Dashboard", path: "/dashboard" },
   { Icon: UsersIcon, label: "Patients", path: "/patients" },
   { Icon: CalendarDotIcon, label: "Appointments", path: "/appointments" },
   { Icon: VideoCameraIcon, label: "Video Consult", path: "/video-consultation" },
@@ -46,6 +46,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ Icon, label, path, active }) => {
 };
 
 export default function SidePanel() {
+  const { pathname } = useLocation();
   const handleLogout = useLogoutRedirect();
 
   return (
@@ -61,8 +62,8 @@ export default function SidePanel() {
         </div>
         <div className="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
           <nav className="flex-1 space-y-2">
-            {menuItems.map(({ Icon, label, path, active }) => (
-              <MenuItem key={label} Icon={Icon} label={label} path={path} active={active} />
+            {menuItems.map(({ Icon, label, path }) => (
+              <MenuItem key={label} Icon={Icon} label={label} path={path} active={path === pathname} />
             ))}
           </nav>
 
