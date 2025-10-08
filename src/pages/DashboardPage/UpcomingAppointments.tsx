@@ -1,10 +1,4 @@
-import {
-  CalendarBlankIcon,
-  CalendarCheckIcon,
-  CalendarDotIcon,
-  CalendarHeartIcon,
-  VideoCameraIcon,
-} from "@phosphor-icons/react";
+import { CalendarBlankIcon, CalendarDotIcon, CalendarHeartIcon, VideoCameraIcon } from "@phosphor-icons/react";
 
 export default function UpcomingAppointments() {
   return (
