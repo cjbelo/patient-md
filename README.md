@@ -63,7 +63,7 @@ React bindings & hooks moved to sub-paths:
 ```ts
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client/react";
-import { useQuery, useMutation } from "@apollo/client/react/hooks";
+import { useQuery, useMutation } from "@apollo/client/react";
 import { SchemaLink } from "@apollo/client/link/schema";
 ```
 
