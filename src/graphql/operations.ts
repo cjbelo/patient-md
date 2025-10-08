@@ -30,6 +30,9 @@ export const ADD_PATIENT = gql`
       gender
       conditions
       lastVisit
+      status
+      visitType
+      avatar
     }
   }
 `;

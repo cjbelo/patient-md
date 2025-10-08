@@ -1,4 +1,3 @@
-// src/components/RecentPatients.tsx
 import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client/react";
@@ -9,9 +8,11 @@ import Pagination from "@/components/Pagination";
 import Spinner from "@/components/Spinner";
 import { DotsThreeOutlineVerticalIcon as DotsIcon, PencilIcon, VideoCameraIcon, UserIcon } from "@phosphor-icons/react";
 import { displayCondition, formatDate, statusBadge } from "@/utils/patientUI";
+import { usePatientStore } from "@/store/patientStore";
 
 export default function RecentPatients() {
-  const { page, pageSize, search, gender } = useUIStore();
+  const { page, pageSize, search, gender, reset } = useUIStore();
+  const { reset: resetMockData } = usePatientStore();
 
   const variables = React.useMemo(
     () => ({ page, pageSize, search, gender: gender || undefined }),
@@ -43,6 +44,12 @@ export default function RecentPatients() {
     [rawNodes]
   );
 
+  const resetData = () => {
+    resetMockData();
+    reset();
+    refetch();
+  };
+
   if (isInitialLoading) {
     return (
       <div className="flex items-center gap-2 mb-4 text-gray-500">
@@ -73,7 +80,10 @@ export default function RecentPatients() {
                 <Spinner size="sm" /> Refreshing...
               </span>
             ))}
-          <Link to="/patients" className="text-sm text-blue-500 hover:text-blue-700 font-medium">
+          <button className="cursor-pointer text-xs text-rose-400 pointer-fine:hover:underline" onClick={resetData}>
+            Reset Mock Data
+          </button>
+          <Link to="/patients" className="text-sm text-blue-500 hover:text-blue-700">
             View all
           </Link>
         </div>
